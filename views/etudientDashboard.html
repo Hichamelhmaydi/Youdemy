@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Étudiant - EduPlatform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-gray-200 fixed h-full">
+            <div class="p-4 border-b">
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+                    Youdemy
+                </h1>
+            </div>
+            
+            <nav class="p-4">
+                <div class="mb-8">
+                    <div class="flex items-center mb-4">
+                        <img src="/api/placeholder/40/40" alt="Profile" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-semibold">John Doe</p>
+                            <p class="text-sm text-gray-500">Étudiant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" id="catalogueBtn" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1">
+                    <i class="fas fa-book mr-3"></i>
+                    Catalogue
+                </a>
+                <a href="#" id="myCoursesBtn" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1">
+                    <i class="fas fa-graduation-cap mr-3"></i>
+                    Mes Cours
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1">
+                    <i class="fas fa-certificate mr-3"></i>
+                    Certificats
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                    <i class="fas fa-cog mr-3"></i>
+                    Paramètres
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ml-64 flex-1">
+            <!-- Top Bar -->
+            <header class="bg-white border-b border-gray-200 p-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1 max-w-xl">
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Rechercher un cours..." 
+                                   class="w-full pl-10 pr-4 py-2 border rounded-lg">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <button class="flex items-center px-3 py-2 bg-gray-100 rounded-lg ml-4">
+                            <i class="fas fa-bell mr-2"></i>
+                            <span class="bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                                3
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="p-6">
+                <!-- Catalogue View -->
+                <div id="catalogueView" class="space-y-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold">Catalogue des Cours</h2>
+                        <div class="flex items-center space-x-4">
+                            <select id="categoryFilter" class="border rounded-lg px-4 py-2">
+                                <option value="">Toutes les catégories</option>
+                                <option value="development">Développement</option>
+                                <option value="design">Design</option>
+                                <option value="business">Business</option>
+                            </select>
+                            <select id="levelFilter" class="border rounded-lg px-4 py-2">
+                                <option value="">Tous les niveaux</option>
+                                <option value="beginner">Débutant</option>
+                                <option value="intermediate">Intermédiaire</option>
+                                <option value="advanced">Avancé</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="coursesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Courses will be inserted here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- My Courses View -->
+                <div id="myCoursesView" class="space-y-6 hidden">
+                    <h2 class="text-2xl font-bold mb-6">Mes Cours</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div id="myCoursesGrid">
+                            <!-- Enrolled courses will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Course Details Modal -->
+    <div id="courseModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg max-w-3xl w-full mx-4 overflow-hidden">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-2xl font-bold" id="modalTitle"></h3>
+                    <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="modalContent">
+                    <!-- Course details will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="etudientDashboard.js"></script>
+</body>
+</html>

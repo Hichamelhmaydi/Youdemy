@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - EduPlatform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <div class="flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+                    EduPlatform
+                </h1>
+                <nav class="space-x-4">
+                    <a href="#catalogue" class="text-gray-700 hover:text-red-600 font-medium">Catalogue</a>
+                    <a href="#createAccount" class="text-gray-700 hover:text-red-600 font-medium">Créer un compte</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-red-600 to-orange-500 text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold mb-4">Bienvenue sur EduPlatform</h2>
+                <p class="text-lg mb-6">Découvrez les meilleurs cours en ligne, apprenez à votre rythme et développez vos compétences.</p>
+                <a href="#catalogue" class="px-6 py-3 bg-white text-red-600 font-bold rounded-lg shadow-md hover:opacity-90">
+                    Voir le Catalogue
+                </a>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Search and Filters -->
+            <div class="flex justify-between items-center mb-6" id="catalogue">
+                <h3 class="text-2xl font-bold">Catalogue des Cours</h3>
+                <div class="relative w-full max-w-lg">
+                    <input type="text" id="searchInput" placeholder="Rechercher un cours..." 
+                           class="w-full pl-10 pr-4 py-2 border rounded-lg">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Catalogue -->
+            <div id="coursesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Courses will be dynamically loaded here -->
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="mt-6 flex justify-center space-x-2">
+                <!-- Pagination buttons will be dynamically generated -->
+            </div>
+        </main>
+
+        <!-- Create Account Modal -->
+        <div id="createAccountModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white rounded-lg max-w-md w-full mx-4 overflow-hidden">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold">Créer un Compte</h3>
+                        <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <form id="createAccountForm" class="space-y-4">
+                        <div>
+                            <label for="username" class="block text-sm font-medium">Nom d'utilisateur</label>
+                            <input type="text" id="username" class="w-full border rounded-lg px-4 py-2">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium">Email</label>
+                            <input type="email" id="email" class="w-full border rounded-lg px-4 py-2">
+                        </div>
+                        <div>
+                            <label for="password" class="block text-sm font-medium">Mot de passe</label>
+                            <input type="password" id="password" class="w-full border rounded-lg px-4 py-2">
+                        </div>
+                        <div>
+                            <label for="role" class="block text-sm font-medium">Choisir un rôle</label>
+                            <select id="role" class="w-full border rounded-lg px-4 py-2">
+                                <option value="">Sélectionner</option>
+                                <option value="student">Étudiant</option>
+                                <option value="teacher">Enseignant</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-gradient-to-r from-red-600 to-orange-500 text-white rounded-lg hover:opacity-90">
+                            Créer un compte
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="visitor.js"></script>
+</body>
+</html>

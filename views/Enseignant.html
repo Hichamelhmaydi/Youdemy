@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Enseignant - EduPlatform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-gray-200 fixed h-full">
+            <div class="p-4 border-b">
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+                    Youdemy
+                </h1>
+            </div>
+            
+            <nav class="p-4">
+                <div class="mb-8">
+                    <div class="flex items-center mb-4">
+                        <img src="/api/placeholder/40/40" alt="Profile" class="w-10 h-10 rounded-full">
+                        <div class="ml-3">
+                            <p class="font-semibold">Jane Doe</p>
+                            <p class="text-sm text-gray-500">Enseignant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" id="addCourseBtn" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1">
+                    <i class="fas fa-plus mr-3"></i>
+                    Ajouter un Cours
+                </a>
+                <a href="#" id="manageCoursesBtn" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1">
+                    <i class="fas fa-edit mr-3"></i>
+                    Gérer les Cours
+                </a>
+                <a href="#" id="statsBtn" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                    <i class="fas fa-chart-line mr-3"></i>
+                    Statistiques
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ml-64 flex-1">
+            <!-- Top Bar -->
+            <header class="bg-white border-b border-gray-200 p-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1 max-w-xl">
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Rechercher un cours..." 
+                                   class="w-full pl-10 pr-4 py-2 border rounded-lg">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <button class="flex items-center px-3 py-2 bg-gray-100 rounded-lg ml-4">
+                            <i class="fas fa-bell mr-2"></i>
+                            <span class="bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                                3
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="p-6">
+                <!-- Ajouter un Cours -->
+                <div id="addCourseView" class="space-y-6">
+                    <h2 class="text-2xl font-bold">Ajouter un Nouveau Cours</h2>
+                    <form id="addCourseForm" class="space-y-4">
+                        <div>
+                            <label for="courseTitle" class="block text-sm font-medium">Titre</label>
+                            <input type="text" id="courseTitle" class="w-full border rounded-lg px-4 py-2">
+                        </div>
+                        <div>
+                            <label for="courseDescription" class="block text-sm font-medium">Description</label>
+                            <textarea id="courseDescription" rows="4" class="w-full border rounded-lg px-4 py-2"></textarea>
+                        </div>
+                        <div>
+                            <label for="courseContent" class="block text-sm font-medium">Contenu (lien vidéo ou document)</label>
+                            <input type="text" id="courseContent" class="w-full border rounded-lg px-4 py-2">
+                        </div>
+                        <div>
+                            <label for="courseTags" class="block text-sm font-medium">Tags</label>
+                            <input type="text" id="courseTags" placeholder="Ex: Développement, Design" class="w-full border rounded-lg px-4 py-2">
+                        </div>
+                        <div>
+                            <label for="courseCategory" class="block text-sm font-medium">Catégorie</label>
+                            <select id="courseCategory" class="w-full border rounded-lg px-4 py-2">
+                                <option value="">Choisir une catégorie</option>
+                                <option value="development">Développement</option>
+                                <option value="design">Design</option>
+                                <option value="business">Business</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-gradient-to-r from-red-600 to-orange-500 text-white rounded-lg hover:opacity-90">
+                            Ajouter Cours
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Gérer les Cours -->
+                <div id="manageCoursesView" class="space-y-6 hidden">
+                    <h2 class="text-2xl font-bold">Gérer les Cours</h2>
+                    <div id="coursesList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Courses will be dynamically loaded here -->
+                    </div>
+                </div>
+
+                <!-- Statistiques -->
+                <div id="statsView" class="space-y-6 hidden">
+                    <h2 class="text-2xl font-bold">Statistiques</h2>
+                    <p class="text-lg">Nombre total de cours : <span id="totalCourses">0</span></p>
+                    <p class="text-lg">Nombre total d'étudiants inscrits : <span id="totalStudents">0</span></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="Enseignant.js"></script>
+</body>
+</html>

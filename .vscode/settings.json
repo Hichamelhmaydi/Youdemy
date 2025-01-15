@@ -1,0 +1,21 @@
+{
+    "dataworkspace.excludedProjects": [
+        "youdemy/youdemy.sqlproj"
+    ],
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "youdemy",
+            "database": "youdemy",
+            "username": "root",
+            "password": ""
+        }
+    ]
+}

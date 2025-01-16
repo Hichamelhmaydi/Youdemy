@@ -1,5 +1,5 @@
 <?php
-class database {
+class DatabaseConnection {
     private $host;
     private $port;
     private $user;
@@ -11,7 +11,7 @@ class database {
         $this->host = "localhost";
         $this->port = "3306";
         $this->user = "root";
-        $this->password = "";
+        $this->password=null;
         $this->database = "youdemy";
 
         try {
@@ -26,5 +26,6 @@ class database {
     public function getPDO() {
         return $this->pdo; 
     }
+
 }
 ?>

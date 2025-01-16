@@ -1,3 +1,17 @@
+<?php
+session_start();
+require_once('../database/connection.php');
+require_once('../classes/inscription.php');
+$pdo = (new DatabaseConnection())->getPDO();
+if (isset($_POST['submit'])){
+    $nom=$_POST['nom'];
+    $prenom=$_POST['prenom'];
+    $email=$_POST['email'];
+    $passworde=$_POST['passworde'];
+    $rolee=$_POST['rolee'];
+$inscrire=new Inscription($pdo, $nom, $prenom, $email, $passworde, $rolee);
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -42,7 +56,7 @@
                 </div>
                 <!-- Bouton d'inscription -->
                 <div>
-                    <button type="submit" class="w-full py-2 bg-gradient-to-r from-red-600 to-orange-500 text-white font-bold rounded-lg hover:opacity-90">S'inscrire</button>
+                    <button type="submit" name="submit" class="w-full py-2 bg-gradient-to-r from-red-600 to-orange-500 text-white font-bold rounded-lg hover:opacity-90">S'inscrire</button>
                 </div>
             </form>
             <p class="text-gray-600 text-center mt-4">

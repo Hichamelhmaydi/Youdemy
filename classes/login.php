@@ -14,10 +14,33 @@ class Login extends User {
 
     public function authenticate() {
         try {
-            $stmt = $this->pdo->prepare("SELECT * FROM user WHERE email = ?");
-            $stmt->bindParam(1, $this->email, PDO::PARAM_STR);
-            $stmt->execute();
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $stmtUser = $this->pdo->prepare("SELECT * FROM user WHERE email = ?");
+            $stmtUser->bindParam(1, $this->email, PDO::PARAM_STR);
+            $stmtUser->execute();
+            $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
+    
+            $stmtAdmin = $this->pdo->prepare("SELECT * FROM admin WHERE email = ?");
+            $stmtAdmin->bindParam(1, $this->email, PDO::PARAM_STR);
+            $stmtAdmin->execute();
+            $admin = $stmtAdmin->fetch(PDO::FETCH_ASSOC);
+    
+            if ($admin) {
+                if ($this->passworde === $admin['passworde']) { 
+                    $_SESSION['admin'] = [
+                        'email' => $admin['email']
+                    ];
+                    header("Location: ../views/adminDashboard.php");
+                    exit;
+                } else {
+                    echo "Erreur: Mot de passe incorrect pour l'administrateur.";
+                    return;
+                }
+            } else {
+                echo "Erreur: Administrateur introuvable.";
+            }
+            
+            
+    
             if ($user) {
                 if (password_verify($this->passworde, $user['passworde'])) {
                     $_SESSION['user'] = [
@@ -26,10 +49,10 @@ class Login extends User {
                         'email' => $user['email'],
                         'rolee' => $user['rolee']
                     ];
-                    if ($user['rolee'] == "Etudiant") {
+                    if ($user['rolee'] === "Etudiant") {
                         header('Location: ../views/etudientDashboard.html');
                         exit; 
-                    } elseif ($user['rolee'] == 'Enseignant') {
+                    } elseif ($user['rolee'] === 'Enseignant') {
                         header('Location: ../views/Enseignant.html');
                         exit;
                     }
@@ -39,14 +62,12 @@ class Login extends User {
                         'message' => 'Mot de passe incorrect.'
                     ];
                 }
-            } else {
-                return [
-                    'success' => false,
-                    'message' => 'Utilisateur introuvable.'
-                ];
             }
-
-  
+    
+            return [
+                'success' => false,
+                'message' => 'Utilisateur introuvable.'
+            ];
         } catch (PDOException $e) {
             return [
                 'success' => false,
@@ -54,6 +75,7 @@ class Login extends User {
             ];
         }
     }
+    
 }
 
 

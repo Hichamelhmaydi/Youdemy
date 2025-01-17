@@ -54,7 +54,7 @@ if (isset($_POST['sub'])) {
             <p id="success-message" class="text-green-500 text-center mt-4"></p>
             <!-- Lien pour créer un compte -->
             <p class="text-center mt-4 text-gray-600">Vous n'avez pas de compte ? 
-                <a href="inscription.html" class="text-orange-500 font-bold hover:underline">Créer un compte</a>
+                <a href="inscription.php" class="text-orange-500 font-bold hover:underline">Créer un compte</a>
             </p>
         </div>
     </section>

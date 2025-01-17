@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPage = 1;
     const itemsPerPage = 6;
 
-    // Sample Courses Data
     function generateSampleCourses() {
         for (let i = 1; i <= 30; i++) {
             courses.push({
@@ -24,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Render Courses
     function renderCourses(page = 1) {
         coursesGrid.innerHTML = '';
         const startIndex = (page - 1) * itemsPerPage;
@@ -48,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderPagination();
     }
 
-    // Render Pagination
     function renderPagination() {
         pagination.innerHTML = '';
         const totalPages = Math.ceil(courses.length / itemsPerPage);
@@ -65,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Search Functionality
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.toLowerCase();
         const filteredCourses = courses.filter(course =>
@@ -89,19 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Show Create Account Modal
     document.querySelector('a[href="#createAccount"]').addEventListener('click', (e) => {
         e.preventDefault();
         createAccountModal.classList.remove('hidden');
         createAccountModal.classList.add('flex');
     });
 
-    // Close Modal
     closeModal.addEventListener('click', () => {
         createAccountModal.classList.add('hidden');
     });
 
-    // Handle Account Creation
     createAccountForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const username = document.getElementById('username').value;

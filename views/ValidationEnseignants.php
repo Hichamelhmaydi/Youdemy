@@ -52,8 +52,9 @@
             <!-- Top Bar -->
             <header class="bg-white border-b border-gray-200 p-4">
                 <div class="flex items-center justify-between">
-                    <h2 class="text-xl font-semibold">Tableau de bord Administrateur</h2>
+                    <h2 class="text-xl font-semibold">Validation Enseignants</h2>
                 </div>
+                
             </header>
 
             <!-- Content Area -->

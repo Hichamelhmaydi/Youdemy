@@ -36,18 +36,24 @@ class Inscription extends User {
         }
 
         try {
-            $hashedPassword = password_hash($this->passworde, PASSWORD_BCRYPT); 
-            $stmt = $this->pdo->prepare("INSERT INTO user (nom, prenom, email, passworde, rolee) VALUES (?, ?, ?, ?, ?)");
+            $hashedPassword = password_hash($this->passworde, PASSWORD_BCRYPT);
+        
+            $statusInscri = ($this->rolee == "Etudiant") ? 'ok' : 'en attent';
+        
+            $stmt = $this->pdo->prepare("INSERT INTO user (nom, prenom, email, passworde, rolee, status_inscri) VALUES (?, ?, ?, ?, ?, ?)");
             $stmt->bindParam(1, $this->nom, PDO::PARAM_STR);
             $stmt->bindParam(2, $this->prenom, PDO::PARAM_STR);
             $stmt->bindParam(3, $this->email, PDO::PARAM_STR);
             $stmt->bindParam(4, $hashedPassword, PDO::PARAM_STR);
             $stmt->bindParam(5, $this->rolee, PDO::PARAM_STR);
+            $stmt->bindParam(6, $statusInscri, PDO::PARAM_STR); 
             $stmt->execute();
+        
             return ['success' => true, 'message' => "Inscription réussie."];
         } catch (PDOException $e) {
             return ['success' => false, 'message' => "Erreur lors de l'insertion des données : " . $e->getMessage()];
         }
+        
     }
 }
 

@@ -9,6 +9,15 @@ CREATE TABLE user (
     rolee ENUM('Etudiant','Enseignant'),
     statut ENUM('active', 'suspended', 'pending') DEFAULT 'pending'
 );
+
+ALTER TABLE user
+    ADD status_inscri ENUM('ok', 'no', 'en attent') DEFAULT 'en attent';
+
+UPDATE user
+SET status_inscri = CASE 
+    WHEN rolee = 'Etudiant' THEN 'ok'
+    ELSE 'en attent'
+END;
 CREATE Table admin(
     ID INT AUTO_INCREMENT PRIMARY KEY,
      email VARCHAR(150) UNIQUE,

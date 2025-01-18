@@ -5,9 +5,12 @@ require_once('../database/connection.php');
 class Inscription extends User {
     protected $pdo;
 
+    public function setPDO($pdo) {
+        $this->pdo = $pdo;
+    }
+
     public function __construct($nom, $prenom, $email, $passworde, $rolee) {
         parent::__construct($nom, $prenom, $email, $passworde, $rolee);
-        $this->pdo = (new DatabaseConnection())->getPDO(); 
     }
 
     public function inscrire() {
@@ -37,23 +40,22 @@ class Inscription extends User {
 
         try {
             $hashedPassword = password_hash($this->passworde, PASSWORD_BCRYPT);
-        
-            $statusInscri = ($this->rolee == "Etudiant") ? 'ok' : 'en attent';
-        
+
+            $status_inscri = ($this->rolee == "Etudiant") ? 'ok' : 'en attent';
+
             $stmt = $this->pdo->prepare("INSERT INTO user (nom, prenom, email, passworde, rolee, status_inscri) VALUES (?, ?, ?, ?, ?, ?)");
             $stmt->bindParam(1, $this->nom, PDO::PARAM_STR);
             $stmt->bindParam(2, $this->prenom, PDO::PARAM_STR);
             $stmt->bindParam(3, $this->email, PDO::PARAM_STR);
             $stmt->bindParam(4, $hashedPassword, PDO::PARAM_STR);
             $stmt->bindParam(5, $this->rolee, PDO::PARAM_STR);
-            $stmt->bindParam(6, $statusInscri, PDO::PARAM_STR); 
+            $stmt->bindParam(6, $status_inscri, PDO::PARAM_STR);
             $stmt->execute();
-        
-            return ['success' => true, 'message' => "Inscription réussie."];
+            header('location:../views/login.php');
         } catch (PDOException $e) {
+            file_put_contents('pdo_errors.log', $e->getMessage(), FILE_APPEND);
             return ['success' => false, 'message' => "Erreur lors de l'insertion des données : " . $e->getMessage()];
         }
-        
     }
 }
 
@@ -66,7 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $passworde = $_POST['passworde'] ?? '';
     $rolee = $_POST['rolee'] ?? '';
 
+    $dbConnection = new DatabaseConnection();
+    $pdo = $dbConnection->getPDO();
+
     $inscription = new Inscription($nom, $prenom, $email, $passworde, $rolee);
+    $inscription->setPDO($pdo);
+
     $result = $inscription->inscrire();
 
     echo json_encode($result);

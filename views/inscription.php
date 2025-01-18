@@ -1,6 +1,7 @@
 <?php
 require_once('../database/connection.php');
 require_once('../classes/inscription.php');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
@@ -34,7 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $pdo = (new DatabaseConnection())->getPDO();
+        $dbConnection = new DatabaseConnection();
+        $pdo = $dbConnection->getPDO(); 
         $inscrire = new Inscription($nom, $prenom, $email, $passworde, $rolee);
         if ($inscrire->inscrire()) {
             header('Location:login.php');
@@ -65,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <section class="min-h-screen flex items-center justify-center">
         <div class="bg-white shadow-lg rounded-lg w-full max-w-lg p-6">
             <h2 class="text-2xl font-bold text-center mb-6">Créer un compte</h2>
-            <form id="inscription-form" class="space-y-4" autocomplete="off">
+            <form id="inscription-form" class="space-y-4" autocomplete="off" method="post">
                 <!-- Nom -->
                 <div>
     <label for="nom" class="block text-gray-700 font-medium">Nom</label>

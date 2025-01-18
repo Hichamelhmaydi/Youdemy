@@ -54,7 +54,19 @@
                 <div class="flex items-center justify-between">
                     <h2 class="text-xl font-semibold">Validation Enseignants</h2>
                 </div>
-                
+                <?php
+                    require_once('../classes/ValidationEnseignants.php');
+                    require_once('../database/connection.php');
+
+                    $dbConnection = new DatabaseConnection();
+                    $pdo = $dbConnection->getPDO(); 
+
+                    $validation = new ValidationEnseignants();
+                    $validation->setPDO($pdo); 
+
+                    $validation->handlePost();
+                    $validation->validation();
+                    ?>
             </header>
 
             <!-- Content Area -->
@@ -75,7 +87,6 @@
                     </div>
                 </div>
 
-                <!-- Gestion des Contenus -->
                 <div id="manageContentView" class="space-y-6 hidden">
                     <h3 class="text-2xl font-bold">Gestion des Contenus</h3>
                     <form id="addTagsForm" class="space-y-4">
@@ -89,18 +100,15 @@
                     </form>
                 </div>
 
-                <!-- Statistiques -->
                 <div id="statsView" class="space-y-6 hidden">
                     <h3 class="text-2xl font-bold">Statistiques Globales</h3>
                     <p class="text-lg">Nombre total de cours : <span id="totalCourses">0</span></p>
                     <p class="text-lg">Répartition par catégorie :</p>
                     <div id="categoryStats" class="space-y-2">
-                        <!-- Categories will be dynamically inserted here -->
                     </div>
                     <p class="text-lg">Cours avec le plus d'étudiants : <span id="topCourse">N/A</span></p>
                     <p class="text-lg">Top 3 Enseignants :</p>
                     <ul id="topTeachers" class="list-disc ml-6">
-                        <!-- Top teachers will be dynamically inserted here -->
                     </ul>
                 </div>
             </div>

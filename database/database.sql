@@ -9,7 +9,6 @@ CREATE TABLE user (
     rolee ENUM('Etudiant','Enseignant'),
     statut ENUM('active', 'suspended', 'pending') DEFAULT 'pending'
 );
-
 ALTER TABLE user
     ADD status_inscri ENUM('ok', 'no', 'en attent') DEFAULT 'en attent';
 

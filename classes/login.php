@@ -47,13 +47,22 @@ class Login extends User {
                         'nom' => $user['nom'],
                         'prenom' => $user['prenom'],
                         'email' => $user['email'],
-                        'rolee' => $user['rolee']
+                        'rolee' => $user['rolee'],
+                        'status_inscri'=>$user['status_inscri']
                     ];
                     if ($user['rolee'] === "Etudiant") {
                         header('Location: ../views/etudientDashboard.html');
                         exit; 
-                    } elseif ($user['rolee'] === 'Enseignant') {
+                    } elseif ($user['rolee'] === 'Enseignant' && $user['status_inscri']=='ok') {
                         header('Location: ../views/Enseignant.html');
+                        exit;
+                    }
+                    elseif ($user['rolee'] === 'Enseignant' && $user['status_inscri']=='no') {
+                        header('Location: ../views/login.php');
+                        exit;
+                    }
+                    elseif ($user['rolee'] === 'Enseignant' && $user['status_inscri']=='en attent') {
+                        header('Location: ../views/login.php');
                         exit;
                     }
                 } else {

@@ -16,9 +16,9 @@ class GestionUtilisateurs {
             $users = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
 
             if (!empty($users)) {
-                echo "<div class='overflow-x-auto'>";
-                echo "<table class='table-auto w-full border-collapse border border-gray-300 text-left'>";
-                echo "<thead class='bg-gray-100'>";
+                echo "<div class='overflow-x-auto'>";  
+                echo "<table class='table-auto w-full border-collapse border border-gray-300 text-left'>";  
+                echo "<thead class='bg-gray-100'>"; 
                 echo "<tr>
                         <th class='border border-gray-300 px-4 py-2'>ID</th>
                         <th class='border border-gray-300 px-4 py-2'>Nom</th>
@@ -31,31 +31,31 @@ class GestionUtilisateurs {
                 echo "<tbody>";
 
                 foreach ($users as $user) {
-                    echo "<tr class='hover:bg-gray-50'>";
+                    echo "<tr class='hover:bg-gray-50'>"; 
                     echo "<td class='border border-gray-300 px-4 py-2'>{$user['ID']}</td>";
                     echo "<td class='border border-gray-300 px-4 py-2'>{$user['nom']}</td>";
                     echo "<td class='border border-gray-300 px-4 py-2'>{$user['prenom']}</td>";
                     echo "<td class='border border-gray-300 px-4 py-2'>{$user['email']}</td>";
                     echo "<td class='border border-gray-300 px-4 py-2'>{$user['rolee']}</td>";
-                    echo "<td class='border border-gray-300 px-4 py-2 flex space-x-2'>";
+                    echo "<td class='border border-gray-300 px-4 py-2 flex space-x-2'>"; 
 
                     echo "<form method='post' class='inline-block'>
                             <input type='hidden' name='user' value='{$user['ID']}'>
-                            <button type='submit' name='statut' value='active' class='bg-green-500 text-white p-2 rounded hover:bg-green-600'>
+                            <button type='submit' name='statut' value='active' class='px-6 py-3 bg-gradient-to-r from-green-600 to-green-500 text-white rounded shadow-md hover:opacity-90 transition'>
                                 Activer
                             </button>
                           </form>";
 
                     echo "<form method='post' class='inline-block'>
                             <input type='hidden' name='user' value='{$user['ID']}'>
-                            <button type='submit' name='statut' value='suspended' class='bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600'>
+                            <button type='submit' name='statut' value='suspended' class='px-6 py-3 bg-gradient-to-r from-yellow-600 to-yellow-500 text-white rounded shadow-md hover:opacity-90 transition'>
                                 Suspendre
                             </button>
                           </form>";
 
                     echo "<form method='post' class='inline-block'>
                             <input type='hidden' name='user' value='{$user['ID']}'>
-                            <button type='submit' name='statut' value='pending' class='bg-gray-500 text-white p-2 rounded hover:bg-gray-600'>
+                            <button type='submit' name='statut' value='pending' class='px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white rounded shadow-md hover:opacity-90 transition'>
                                 Suppression
                             </button>
                           </form>";
@@ -88,6 +88,5 @@ class GestionUtilisateurs {
             }
         }
     }
-        
 }
 ?>

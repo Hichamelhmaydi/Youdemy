@@ -7,7 +7,7 @@ CREATE TABLE user (
     email VARCHAR(150) UNIQUE,
     passworde VARCHAR(300) UNIQUE,
     rolee ENUM('Etudiant','Enseignant'),
-    statut ENUM('active', 'suspended', 'pending') DEFAULT 'pending'
+    statut ENUM('active', 'suspended', 'pending') DEFAULT 'active'
 );
 ALTER TABLE user
     ADD status_inscri ENUM('ok', 'no', 'en attent') DEFAULT 'en attent';

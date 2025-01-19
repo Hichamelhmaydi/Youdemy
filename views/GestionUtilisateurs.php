@@ -52,9 +52,21 @@
             <!-- Top Bar -->
             <header class="bg-white border-b border-gray-200 p-4">
                 <div class="flex items-center justify-between">
-                    <h2 class="text-xl font-semibold">Tableau de bord Administrateur</h2>
+                    <h2 class="text-xl font-semibold">Gestion Utilisateurs</h2>
                 </div>
-            </header>
+                <?php
+                    require_once('../database/connection.php');
+                    require_once('../classes/GestionUtilisateurs.php');
+
+                    $dbConnection = new DatabaseConnection();
+                    $pdo = $dbConnection->getPDO();
+                    $gestionUtilisateurs = new GestionUtilisateurs();
+                    $gestionUtilisateurs->setPDO($pdo); 
+                    $gestionUtilisateurs->updateStatus();
+                    $gestionUtilisateurs->afficheruser();
+                ?>
+
+            </header>   
 
             <!-- Content Area -->
             <div class="p-6">

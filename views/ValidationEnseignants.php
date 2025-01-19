@@ -32,11 +32,11 @@
                     <i class="fas fa-user-check mr-3"></i>
                     Validation Enseignants
                 </a>
-                <a href="#" id="manageUsersBtn" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1">
+                <a href="GestionUtilisateurs.php" id="manageUsersBtn" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1">
                     <i class="fas fa-users mr-3"></i>
                     Gestion Utilisateurs
                 </a>
-                <a href="#" id="manageContentBtn" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1">
+                <a href="GestionContenus.php" id="manageContentBtn" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1">
                     <i class="fas fa-folder mr-3"></i>
                     Gestion Contenus
                 </a>

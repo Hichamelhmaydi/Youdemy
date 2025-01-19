@@ -48,13 +48,31 @@ class Login extends User {
                         'prenom' => $user['prenom'],
                         'email' => $user['email'],
                         'rolee' => $user['rolee'],
-                        'status_inscri'=>$user['status_inscri']
+                        'status_inscri'=>$user['status_inscri'],
+                        'statut'=>$user['statut']
                     ];
-                    if ($user['rolee'] === "Etudiant") {
+                    if ($user['rolee'] === "Etudiant" && $user['statut']==='active') {
                         header('Location: ../views/etudientDashboard.html');
                         exit; 
-                    } elseif ($user['rolee'] === 'Enseignant' && $user['status_inscri']=='ok') {
+                    } 
+                    elseif ($user['rolee'] === "Etudiant" && $user['statut']==='suspended') {
+                        header('Location: ../views/suspended.html');
+                        exit; 
+                    }
+                    elseif ($user['rolee'] === "Etudiant" && $user['statut']==='pending') {
+                        header('Location: ../views/pending.html');
+                        exit; 
+                    }
+                    elseif ($user['rolee'] === 'Enseignant' && $user['status_inscri']=='ok' && $user['statut']==='active') {
                         header('Location: ../views/Enseignant.html');
+                        exit;
+                    }
+                    elseif ($user['rolee'] === 'Enseignant' && $user['status_inscri']=='ok' && $user['statut']==='suspended') {
+                        header('Location: ../views/suspended.html');
+                        exit;
+                    }
+                    elseif ($user['rolee'] === 'Enseignant' && $user['status_inscri']=='ok' && $user['statut']==='pending') {
+                        header('Location: ../views/pending.html');
                         exit;
                     }
                     elseif ($user['rolee'] === 'Enseignant' && $user['status_inscri']=='no') {
@@ -65,6 +83,8 @@ class Login extends User {
                         header('Location: ../views/login.php');
                         exit;
                     }
+
+                   
                 } else {
                     return [
                         'success' => false,

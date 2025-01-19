@@ -69,7 +69,7 @@ class ValidationEnseignants {
 
     public function handlePost() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['enseignant_id'], $_POST['action'])) {
-            $enseignantId = (int)$_POST['enseignant_id'];
+            $enseignantId = $_POST['enseignant_id'];
             $action = $_POST['action'];
 
             if ($action === 'confirm') {

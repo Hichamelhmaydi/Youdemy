@@ -26,18 +26,16 @@ class SupprimerTag {
     }
 
     public function delet() {
-        // Vérifier si l'utilisateur a cliqué sur "Supprimer"
         if (isset($_POST['delete'])) {
             if (isset($_POST['category_id'])) {
                 $this->deleteTag($_POST['category_id']);
                 echo '<p class="text-green-500 text-center mt-6">tag supprimée avec succès.</p>';
-                header("Refresh: 2; url=" . $_SERVER['PHP_SELF']);  // Actualiser la page après la suppression
+                header("Refresh: 2; url=" . $_SERVER['PHP_SELF']);  
             } else {
                 echo '<p class="text-red-500 text-center mt-6">Erreur lors de la suppression de le tag.</p>';
             }
         }
 
-        // Affichage des catégories
         $tags = $this->getAllTags();
         echo '<h1 class="text-2xl font-bold text-center my-6">Liste des tags</h1>';
         echo '<table class="table-auto border-collapse border border-gray-300 mx-auto w-full max-w-5xl text-center">';

@@ -1,11 +1,11 @@
 <?php
 require_once('../database/connection.php');
-require_once('../classes/SupprimerCategorie.php');
+require_once('../classes/Statistiques.php');
 
 $dbConnection = new DatabaseConnection();
 $pdo = $dbConnection->getPDO();
-$Categorie = new SupprimerCategorie();
-$Categorie->setPDO($pdo);
+$Statistique = new Statistiques();
+$Statistique->setPDO($pdo);
 ?>
 
 <!DOCTYPE html>
@@ -53,13 +53,32 @@ $Categorie->setPDO($pdo);
             </nav>
         </aside>
 
-        <!-- Main Section -->
-        <section class="pt-24 pb-12 md:pt-32 md:pb-20 ml-64 w-full"> 
+        <div class="ml-64">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <section class="pt-24 pb-12 md:pt-32 md:pb-20">
             <div class="container mx-auto px-6">
-                <!-- Affichage des catégories -->
-                <?php $Categorie->delet(); ?>
+                <?php $Statistique->usersStatistiqyes(); ?>
             </div>
         </section>
+        <section class="pt-24 pb-12 md:pt-32 md:pb-20">
+            <div class="container mx-auto px-6">
+                <?php $Statistique->studentStatistiqyes(); ?>
+            </div>
+        </section>
+        <section class="pt-24 pb-12 md:pt-32 md:pb-20">
+            <div class="container mx-auto px-6">
+                <?php $Statistique->EnseignantStatistiqyes(); ?>
+            </div>
+        </section>
+        <section class="pt-24 pb-12 md:pt-32 md:pb-20">
+            <div class="container mx-auto px-6">
+                <?php $Statistique->CoursStatistiqyes(); ?>
+            </div>
+        </section>
+    </div>
+</div>
+
+
     </div>
 </body>
 </html>

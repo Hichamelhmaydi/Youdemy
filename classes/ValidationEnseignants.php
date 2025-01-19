@@ -35,7 +35,7 @@ class ValidationEnseignants {
                 echo "<td class='border border-gray-300 px-4 py-2'>{$enseignant['prenom']}</td>";
                 echo "<td class='border border-gray-300 px-4 py-2'>{$enseignant['email']}</td>";
                 echo "<td class='border border-gray-300 px-4 py-2 flex space-x-2'>";
-                // Formulaire pour accepter
+                
                 echo "<form method='post' class='inline-block'>
                         <input type='hidden' name='enseignant_id' value='{$enseignant['ID']}'>
                         <button type='submit' name='action' value='confirm' class='bg-green-500 text-white p-2 rounded hover:bg-green-600'>
@@ -44,7 +44,7 @@ class ValidationEnseignants {
                             </svg>
                         </button>
                       </form>";
-                // Formulaire pour rejeter
+
                 echo "<form method='post' class='inline-block'>
                         <input type='hidden' name='enseignant_id' value='{$enseignant['ID']}'>
                         <button type='submit' name='action' value='reject' class='bg-red-500 text-white p-2 rounded hover:bg-red-600'>

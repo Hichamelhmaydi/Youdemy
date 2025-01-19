@@ -26,18 +26,16 @@ class SupprimerCategorie {
     }
 
     public function delet() {
-        // Vérifier si l'utilisateur a cliqué sur "Supprimer"
         if (isset($_POST['delete'])) {
             if (isset($_POST['category_id'])) {
                 $this->deleteCategory($_POST['category_id']);
                 echo '<p class="text-green-500 text-center mt-6">Catégorie supprimée avec succès.</p>';
-                header("Refresh: 2; url=" . $_SERVER['PHP_SELF']);  // Actualiser la page après la suppression
+                header("Refresh: 2; url=" . $_SERVER['PHP_SELF']);  
             } else {
                 echo '<p class="text-red-500 text-center mt-6">Erreur lors de la suppression de la catégorie.</p>';
             }
         }
 
-        // Affichage des catégories
         $categories = $this->getAllCategories();
         echo '<h1 class="text-2xl font-bold text-center my-6">Liste des catégories</h1>';
         echo '<table class="table-auto border-collapse border border-gray-300 mx-auto w-full max-w-5xl text-center">';

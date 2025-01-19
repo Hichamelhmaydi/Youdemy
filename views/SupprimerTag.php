@@ -47,7 +47,7 @@ $tag->setPDO($pdo);
                 <a href="GestionContenus.php" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-1">
                     <i class="fas fa-folder mr-3"></i> Gestion Contenus
                 </a>
-                <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg">
+                <a href="Statistiques.php" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg">
                     <i class="fas fa-chart-line mr-3"></i> Statistiques
                 </a>
             </nav>
